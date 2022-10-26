@@ -15,12 +15,12 @@
         </div>
         <section class="is-large has-background-link has-text-warning">
               <nav class="level">
-                <div class="level-left has-text-warning has-text-weight-medium is-size-2 ml-2">
+                <div class="level-left has-text-warning has-text-weight-medium is-size-2 ml-4">
                   <p class="level-item">
                     Pokémon
                   </p>
                 </div>
-                <div class="level-right mr-2">
+                <div class="level-right mr-4">
                   <div class="level-item">
                   </div>
                   <div class="level-item">
@@ -37,53 +37,81 @@
                   </div>
                 </div>
               </nav>
-              <div class="tile is-ancestor">
-                <div class="tile is-vertical is-8">
-                  <div class="tile">
-                    <div class="tile is-parent is-vertical">
-                      <article class="tile is-child box has-background-warning has-text-centered">
-                        <!-- Put any content you want -->
-                        <p class="has-text-danger is-size-3">Pikachu</p>
-                        <figure class="image is-128x128 is-inline-block">
-                          <img src ="./pikachu.jpg">
+              <div class="tile is-ancestor ml-2 mr-2">
+                <div class="tile is-parent">
+                  <article class="tile card is-child box has-background-danger">
+                    <p class="title has-text-centered has-text-warning">Pokémon</p>
+                    <figure class="image is-128x128 container">
+                      <img src="./pikachu.jpg">
 
-                        </figure>
-                      </article>
-                      <article class="tile is-child box has-background-danger has-text-centered">
-                        <p class="has-text-warning is-size-3">Type:</p>
-                        <br>
-                      </article>
-                    </div>
-                    <div class="tile is-parent">
-                      <article class="tile is-child box has-background-info">
-                        <p class="is-size-3 has-text-warning">Stats:</p>
-
-                      </article>
-                    </div>
-                  </div>
-                  <div class="tile is-parent">
-                    <article class="tile is-child box has-background-warning">
-                      <!-- Put any content you want -->
-                    </article>
-                  </div>
+                    </figure>
+                  </article>
                 </div>
                 <div class="tile is-parent">
-                  <article class="tile is-child box has-background-warning">
-                    <!-- Put any content you want -->
+                  <article class="tile is-child box  has-background-primary">
+                    <p class="title has-text-centered has-text-danger">Stats:</p>
+                  </article>
+                </div>
+                <div class="tile is-parent">
+                  <article class="tile is-child box  has-background-warning">
+                    <p class="title has-text-centered has-text-info">Type:</p>
+                    <ul>
+                      <li></li>
+                    </ul>
                   </article>
                 </div>
               </div>
-
-              </article>
+              <div class="tile is-ancestor ml-2 mr-2">
+                <div class="tile is-parent is-12">
+                  <article class="tile is-child box has-background-danger">
+                    <p class="title  has-text-warning">Title:</p>
+                    <br>
+                    <p class="title  has-text-warning">Description:</p>
+                  </article>
+                </div>
+              </div>
+              <div class="tile is-ancestor ml-2 mr-2">
+                <div class="tile is-parent is-12">
+                  <article class="tile is-child box has-background-primary">
+                    <p class="title  has-text-danger">Title:</p>
+                    <br>
+                    <p class="title  has-text-danger">Description:</p>
+                  </article>
+                </div>
+              </div>
+              <div class="tile is-ancestor ml-2 mr-2">
+                <div class="tile is-parent is-12">
+                  <article class="tile is-child box has-background-warning">
+                    <p class="title  has-text-info">Title:</p>
+                    <br>
+                    <p class="title  has-text-info">Description:</p>
+                  </article>
+                </div>
+              </div>
+              <div class="tile is-ancestor ml-2 mr-2">
+                <div class="tile is-parent is-12">
+                  <article class="tile is-child box has-background-danger">
+                    <p class="title  has-text-warning">Title:</p>
+                    <br>
+                    <p class="title  has-text-warning">Description:</p>
+                  </article>
+                </div>
+              </div>
+              <div class="tile is-ancestor  ml-2 mr-2 mb-1">
+                <div class="tile is-parent is-12">
+                  <article class="tile is-child box has-background-primary">
+                    <p class="title  has-text-danger">Title:</p>
+                    <br>
+                    <p class="title  has-text-danger">Description:</p>
+                  </article>
+                </div>
+              </div>
         </section>
-        <footer class="footer has-background-danger-ligt">
-          <div class="content has-text-centered">
-            <p class="has-text-black">
-              <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-              <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-              is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-            </p>
-          </div>
+        <footer class="footer has-background-danger-light">
+            <div class="content has-text-centered has-text-black">
+                <p>Powered by Wikipedia and PokéAPI</p>
+                <p>Created by group 7</p>
+            </div>
         </footer>
   </body>
 </html>
