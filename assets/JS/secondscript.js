@@ -1,23 +1,21 @@
-var searchBar = document.querySelector("#search-input");
-var searchBtn = document.querySelector("#search-button");
-var previousSearch = document.querySelector("#previous-searches");
+// secondscript
 
+console.log('testing')
 
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('pokemon').toLowerCase();
 
-// Uses the search to find the Pokemon entered by the user
-searchBtn.addEventListener("click",function () {  
-    var temp = searchBar.value;
-    var pokemon = temp.toLowerCase();
-    window.location = `./landing.html?pokemon=${pokemon}`;
+console.log(myParam)
 
-    // // START 2ND JS FILE
-    // console.log('TEST')
-    // getPokemon(pokemon) // API search function from Pokemon API
-    // getWiki(pokemon)
-    // savedSearches(pokemon);
-    // PokeStuff()
-});
+// START 2ND JS FILE
+    console.log('TEST')
+    getPokemon(myParam) // API search function from Pokemon API
+    getWiki(myParam)
+    savedSearches(myParam);
+    PokeStuff()
 
+var PokeObj = {};
+var WikiObj = {};
 
 function savedSearches(pokemon) {
     // Uses the localStorage to save the last search results
@@ -103,12 +101,3 @@ await fetch(BaseWiki)
 })
 localStorage.setItem("Wiki-Facts",JSON.stringify(WikiObj))
 }
-
-
-
-
-
-
-
-
-
