@@ -9,7 +9,7 @@
   <body>
     <section class="hero is-danger">
         <div class="hero-body">
-          <a class="title has-text-warning is-size-1 has-text-weight-medium">
+          <a class="title has-text-warning is-size-1 has-text-weight-medium" href="./search.html">
             Wikimon
           </a>
         </div>
@@ -26,10 +26,10 @@
                   <div class="level-item">
                     <div class="field has-addons">
                       <p class="control">
-                        <input class="input" type="text" placeholder="Search Pokémon">
+                        <input id="search-input" class="input" type="text" placeholder="Search Pokémon">
                       </p>
                       <p class="control">
-                        <button class="button">
+                        <button id="search-button" class="button">
                           Search
                         </button>
                       </p>
@@ -40,9 +40,9 @@
               <div class="tile is-ancestor ml-2 mr-2">
                 <div class="tile is-parent">
                   <article class="tile card is-child box has-background-danger">
-                    <p class="title has-text-centered has-text-warning">Pokémon</p>
+                    <p id="pokename" class="title has-text-centered has-text-warning"></p>
                     <figure class="image is-128x128 container">
-                      <img src="./pikachu.jpg">
+                      <!-- <img src="./assets/Pictures/pikachu.jpg"> -->
 
                     </figure>
                   </article>
@@ -113,5 +113,7 @@
                 <p>Created by group 7</p>
             </div>
         </footer>
+
+        <script src="./assets/JS/script.js"></script>
   </body>
 </html>
