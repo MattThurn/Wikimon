@@ -1,26 +1,46 @@
 // secondscript
+var searchBtn = document.querySelector("#search-button");
+var searchBar = document.querySelector("#search-input");
+var previousSearch = document.querySelector("#previous-searches");
 
-console.log('testing')
-
-const urlParams = new URLSearchParams(window.location.search);
-const myParam = urlParams.get('pokemon').toLowerCase();
+var urlParams = new URLSearchParams(window.location.search); // Search parameters in URL
+var myParam = urlParams.get('pokemon').toLowerCase(); // Ensuring it's in all lowercase for search API's
 
 console.log(myParam)
 
-// START 2ND JS FILE
+
+
+// Displaying information when searching for another pokemon on the landing page
+searchBtn.addEventListener("click",function () {  
+    var temp = searchBar.value;
+    var pokemon = temp.toLowerCase();
+
+    // START 2ND JS FILE
+    console.log('TEST')
+    getPokemon(pokemon) // API search function from Pokemon API
+    getWiki(pokemon)
+    savedSearches(pokemon);
+    PokeStuff()
+});
+
+// START 2ND JS FILE ----------------------------------------------------
+if (myParam !== null) {
+
     console.log('TEST')
     getPokemon(myParam) // API search function from Pokemon API
-    getWiki(myParam)
-    savedSearches(myParam);
+    getWiki(myParam) // API search function from Wiki API
+    savedSearches(myParam); // Saves the last Pokemon searched to local storage
     PokeStuff()
+}
 
 var PokeObj = {};
 var WikiObj = {};
 
-function savedSearches(pokemon) {
-    // Uses the localStorage to save the last search results
-
-    localStorage.setItem("lastsearch",JSON.stringify(pokemon)); // search results got into the ()
+var Searches = [];
+function savedSearches(pokemon) { // Uses the localStorage to save the last search results
+    if (pokemon !== null) {     
+        localStorage.setItem("lastsearch",JSON.stringify(Searches)); // search results got into the ()
+}
 }
 
 function displaySavedSearches() {
@@ -30,15 +50,44 @@ function displaySavedSearches() {
         var parcsData = JSON.parse(lastSearch);
         previousSearch.appendChild(parcsData[""]); // Data parseDated added in the ""
     }
+    console.log(previousSearch)
 }
 
-// displaySavedSearches();
+// Displaying information from local storage
 function PokeStuff() {
     var PokeInfo = JSON.parse(localStorage.getItem("Poke-Facts"))
     var WikiInfo = JSON.parse(localStorage.getItem("Wiki-Facts"))
 
+    // Pokemon Name
     document.querySelector("#pokename").innerHTML = PokeInfo.Name;
+
+    //Pokemon Sprite
+    var PokeImg = $('<img>').attr('src',PokeInfo.Sprite);
+    PokeImg.attr('alt',`${PokeInfo.Name} sprite`);
+    PokeImg.attr('style','height:100%; width:100%').appendTo('#ImgCont');
+
+    // Pokemon Stats
+    $('<p>').text(`HP: ${PokeInfo.HP}`).appendTo('#stats')
+    $('<p>').text(`Attack: ${PokeInfo.Attack}`).appendTo('#stats')
+    $('<p>').text(`Defense: ${PokeInfo.Defense}`).appendTo('#stats')
+    $('<p>').text(`Spc Atk: ${PokeInfo.SpecialAtt}`).appendTo('#stats')
+    $('<p>').text(`Spc Def: ${PokeInfo.SpecialDef}`).appendTo('#stats')
+    $('<p>').text(`Speed: ${PokeInfo.Speed}`).appendTo('#stats')
+
+    // Type
+    $('<p>').text(`Type 1: ${PokeInfo.Type1}`).appendTo('#type')
+    $('<p>').text(`Type 2: ${PokeInfo.Type2}`).appendTo('#type')
+
+    // Wiki Stuff Added
+    var j = 0;
+    for (i = 0; i < 5; i++) {
+        j = i+1;
+        $(`#wikiT${j}`).text(`Title: ${WikiInfo[i].Key}`) // Title
+        $(`#wikiD${j}`).text(`Description: ${WikiInfo[i].Description}`) // Website
+        $(`#wikiW${j}`).attr('href',`https://en.wikipedia.org/wiki/${WikiInfo[i].Key}`).text(`Wiki Link: https://en.wikipedia.org/wiki/${WikiInfo[i].Key}`)
+    }
 }
+
 
 
 // COPY AND PASTE FROM MATT'S JS
@@ -68,7 +117,10 @@ async function getPokemon(pokemon) {
         SpecialAtt: data.stats[3].base_stat,
         SpecialDef: data.stats[4].base_stat,
         Speed: data.stats[5].base_stat,
+        Type1: data.types[0].type.name,
+        Type2: (data.types).length !== 2 ? "none" : data.types[1].type.name
     }
+    
     // pokesprite = data.sprites.front_default; // Pulling sprite from Pokemon API for Pokemon Search
     // console.log(pokesprite);
     // // "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/129.png"
@@ -77,6 +129,7 @@ async function getPokemon(pokemon) {
     // $('#pokeimg').attr('alt',`Sprite of ${pokemon} pulled from Pokemon API`)
     // $('#pokeimg').attr('style','height:240px; weight:240px')
 })
+console.log(PokeObj)
 localStorage.setItem("Poke-Facts",JSON.stringify(PokeObj))
 }
 // getPokemon(pokemon)

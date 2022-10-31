@@ -18,12 +18,16 @@ searchBtn.addEventListener("click",function () {
     // PokeStuff()
 });
 
-
+Searches = [];
 function savedSearches(pokemon) {
     // Uses the localStorage to save the last search results
-
-    localStorage.setItem("lastsearch",JSON.stringify(pokemon)); // search results got into the ()
+    if (pokemon !== null) {
+    Searches.push(pokemon);
+    localStorage.setItem("lastsearch",JSON.stringify(Searches)); // search results got into the ()
 }
+}
+
+
 
 function displaySavedSearches() {
     // Displays the saved search results to the previous pokemon searches area
@@ -41,6 +45,8 @@ function PokeStuff() {
 
     document.querySelector("#pokename").innerHTML = PokeInfo.Name;
 }
+
+// Separate Function for Previous Searches, making the tile a button and updating with a rotation of previous searches
 
 
 // COPY AND PASTE FROM MATT'S JS
