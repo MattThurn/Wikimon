@@ -9,37 +9,37 @@ var myParam = urlParams.get('pokemon').toLowerCase(); // Ensuring it's in all lo
 console.log(myParam)
 
 
+// START 2ND JS FILE ----------------------------------------------------
+var PokeObj = {};
+var WikiObj = {};
+var Searches = JSON.parse(localStorage.getItem('lastsearch'));
+
+
+//var Searches = [SearchHistory];
+
+console.log('TEST')
+getPokemon(myParam) // API search function from Pokemon API
+getWiki(myParam) // API search function from Wiki API
+// savedSearches(myParam); // Saves the last Pokemon searched to local storage
+        
 
 // Displaying information when searching for another pokemon on the landing page
 searchBtn.addEventListener("click",function () {  
+    reset()
     var temp = searchBar.value;
     var pokemon = temp.toLowerCase();
-
     // START 2ND JS FILE
     console.log('TEST')
     getPokemon(pokemon) // API search function from Pokemon API
     getWiki(pokemon)
-    savedSearches(pokemon);
-    PokeStuff()
+    Searches.push({Name: pokemon, Sprite: PokeObj.Sprite});
+    savedSearches(Searches);
 });
 
-// START 2ND JS FILE ----------------------------------------------------
-if (myParam !== null) {
 
-    console.log('TEST')
-    getPokemon(myParam) // API search function from Pokemon API
-    getWiki(myParam) // API search function from Wiki API
-    savedSearches(myParam); // Saves the last Pokemon searched to local storage
-    PokeStuff()
-}
-
-var PokeObj = {};
-var WikiObj = {};
-
-var Searches = [];
-function savedSearches(pokemon) { // Uses the localStorage to save the last search results
-    if (pokemon !== null) {     
-        localStorage.setItem("lastsearch",JSON.stringify(Searches)); // search results got into the ()
+function savedSearches(pokemon) { // Uses the localStorage to save the last search result
+    if (pokemon !== null) {
+        localStorage.setItem("lastsearch",JSON.stringify(pokemon)); // search results got into the ()
 }
 }
 
@@ -54,7 +54,7 @@ function displaySavedSearches() {
 }
 
 // Displaying information from local storage
-function PokeStuff() {
+async function PokeStuff() {
     var PokeInfo = JSON.parse(localStorage.getItem("Poke-Facts"))
     var WikiInfo = JSON.parse(localStorage.getItem("Wiki-Facts"))
 
@@ -76,6 +76,7 @@ function PokeStuff() {
 
     // Type
     $('<p>').text(`Type 1: ${PokeInfo.Type1}`).appendTo('#type')
+    $('<br>').appendTo('#type')
     $('<p>').text(`Type 2: ${PokeInfo.Type2}`).appendTo('#type')
 
     // Wiki Stuff Added
@@ -86,19 +87,26 @@ function PokeStuff() {
         $(`#wikiD${j}`).text(`Description: ${WikiInfo[i].Description}`) // Website
         $(`#wikiW${j}`).attr('href',`https://en.wikipedia.org/wiki/${WikiInfo[i].Key}`).text(`Wiki Link: https://en.wikipedia.org/wiki/${WikiInfo[i].Key}`)
     }
+    console.log('order')
 }
 
+// Need reset functions for everything that is filled out
+function reset() {
+    localStorage.clear();
+    $('#pokename').empty();
+    $('#ImgCont').empty();
+    $('#stats').empty();
+    $('#type').empty();
 
+    for (i = 0; i < 5; i++) {
+        j = i+1;
+        $(`#wikiT${j}`).empty() 
+        $(`#wikiD${j}`).empty() 
+        $(`#wikiW${j}`).empty() 
+    }
+    console.log('order')
+}
 
-// COPY AND PASTE FROM MATT'S JS
-// This page has the API's as a shell to get the information we need from them
-// Using the Pokemon API and Wikipedia API
- // entry needs to be lower case
-
-// total array is 1154 of pokemon listed in the Pokemon API
-// Wikipedia seems to only have pages for the first two generations 1 - 251 ** restrict to only the first 251 pokemon then state there will be future updates as wikipedia updates
-// Pokemon API
-// var BasePoke = `https://pokeapi.co/api/v2/pokemon/${(pokemon)}`;
 
 async function getPokemon(pokemon) {
     var BasePoke = `https://pokeapi.co/api/v2/pokemon/${(pokemon)}`;
@@ -131,6 +139,7 @@ async function getPokemon(pokemon) {
 })
 console.log(PokeObj)
 localStorage.setItem("Poke-Facts",JSON.stringify(PokeObj))
+console.log('order')
 }
 // getPokemon(pokemon)
 // Wikipedia API
@@ -153,4 +162,6 @@ await fetch(BaseWiki)
  
 })
 localStorage.setItem("Wiki-Facts",JSON.stringify(WikiObj))
+console.log('order')
+PokeStuff()
 }
