@@ -9,7 +9,7 @@
   <body>
     <section class="hero is-danger">
         <div class="hero-body">
-          <a class="title has-text-warning is-size-1 has-text-weight-medium">
+          <a class="title has-text-warning is-size-1 has-text-weight-medium" href="./search.html">
             Wikimon
           </a>
         </div>
@@ -26,10 +26,10 @@
                   <div class="level-item">
                     <div class="field has-addons">
                       <p class="control">
-                        <input class="input" type="text" placeholder="Search Pokémon">
+                        <input id="search-input" class="input" type="text" placeholder="Search Pokémon">
                       </p>
                       <p class="control">
-                        <button class="button">
+                        <button id="search-button" class="button">
                           Search
                         </button>
                       </p>
@@ -40,21 +40,20 @@
               <div class="tile is-ancestor ml-2 mr-2">
                 <div class="tile is-parent">
                   <article class="tile card is-child box has-background-danger">
-                    <p class="title has-text-centered has-text-warning">Pokémon</p>
-                    <figure class="image is-128x128 container">
-                      <img src="./pikachu.jpg">
+                    <p id="pokename" class="title has-text-centered has-text-warning"></p>
+                    <figure id="ImgCont" class="image is-128x128 container">
 
                     </figure>
                   </article>
                 </div>
                 <div class="tile is-parent">
                   <article class="tile is-child box  has-background-primary">
-                    <p class="title has-text-centered has-text-danger">Stats:</p>
+                    <p id='stats' class="title has-text-centered has-text-danger">Stats:</p>
                   </article>
                 </div>
                 <div class="tile is-parent">
                   <article class="tile is-child box  has-background-warning">
-                    <p class="title has-text-centered has-text-info">Type:</p>
+                    <p id='type' class="title has-text-centered has-text-info">Type(s):</p>
                     <ul>
                       <li></li>
                     </ul>
@@ -64,45 +63,55 @@
               <div class="tile is-ancestor ml-2 mr-2">
                 <div class="tile is-parent is-12">
                   <article class="tile is-child box has-background-danger">
-                    <p class="title  has-text-warning">Title:</p>
+                    <p id='wikiT1' class="title  has-text-warning"></p>
                     <br>
-                    <p class="title  has-text-warning">Description:</p>
+                    <p id='wikiD1' class="title  has-text-warning"></p>
+                    <br>
+                    <a id="wikiW1" class="title has-text-warning"></a>
                   </article>
                 </div>
               </div>
               <div class="tile is-ancestor ml-2 mr-2">
                 <div class="tile is-parent is-12">
                   <article class="tile is-child box has-background-primary">
-                    <p class="title  has-text-danger">Title:</p>
+                    <p id='wikiT2' class="title  has-text-danger"></p>
                     <br>
-                    <p class="title  has-text-danger">Description:</p>
+                    <p id='wikiD2' class="title  has-text-danger"></p>
+                    <br>
+                    <a id="wikiW2" class="title has-text-danger"></a>
                   </article>
                 </div>
               </div>
               <div class="tile is-ancestor ml-2 mr-2">
                 <div class="tile is-parent is-12">
                   <article class="tile is-child box has-background-warning">
-                    <p class="title  has-text-info">Title:</p>
+                    <p id='wikiT3' class="title  has-text-info"></p>
                     <br>
-                    <p class="title  has-text-info">Description:</p>
+                    <p id='wikiD3' class="title  has-text-info"></p>
+                    <br>
+                    <a id="wikiW3" class="title has-text-info"></a>
                   </article>
                 </div>
               </div>
               <div class="tile is-ancestor ml-2 mr-2">
                 <div class="tile is-parent is-12">
                   <article class="tile is-child box has-background-danger">
-                    <p class="title  has-text-warning">Title:</p>
+                    <p id='wikiT4' class="title  has-text-warning"></p>
                     <br>
-                    <p class="title  has-text-warning">Description:</p>
+                    <p id='wikiD4' class="title  has-text-warning"></p>
+                    <br>
+                    <a id="wikiW4" class="title has-text-warning"></a>
                   </article>
                 </div>
               </div>
               <div class="tile is-ancestor  ml-2 mr-2 mb-1">
                 <div class="tile is-parent is-12">
                   <article class="tile is-child box has-background-primary">
-                    <p class="title  has-text-danger">Title:</p>
+                    <p id='wikiT5' class="title  has-text-danger"></p>
                     <br>
-                    <p class="title  has-text-danger">Description:</p>
+                    <p id='wikiD5' class="title  has-text-danger"></p>
+                    <br>
+                    <a id="wikiW5" class="title has-text-danger"></a>
                   </article>
                 </div>
               </div>
@@ -113,5 +122,8 @@
                 <p>Created by group 7</p>
             </div>
         </footer>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="./assets/JS/secondscript.js"></script>
   </body>
 </html>
