@@ -32,8 +32,8 @@ searchBtn.addEventListener("click",function () {
     console.log('TEST')
     getPokemon(pokemon) // API search function from Pokemon API
     getWiki(pokemon)
-    Searches.push({Name: pokemon, Sprite: PokeObj.Sprite});
-    savedSearches(Searches);
+    Searches.push({Name: pokemon, Sprite: PokeObj.Sprite})
+    savedSearches(Searches)
 });
 
 
@@ -43,15 +43,6 @@ function savedSearches(pokemon) { // Uses the localStorage to save the last sear
 }
 }
 
-function displaySavedSearches() {
-    // Displays the saved search results to the previous pokemon searches area
-    var lastSearch = localStorage.getItem("lastsearch"); // vars subject to change
-    if (lastSearch) {
-        var parcsData = JSON.parse(lastSearch);
-        previousSearch.appendChild(parcsData[""]); // Data parseDated added in the ""
-    }
-    console.log(previousSearch)
-}
 
 // Displaying information from local storage
 async function PokeStuff() {
@@ -128,7 +119,6 @@ async function getPokemon(pokemon) {
         Type1: data.types[0].type.name,
         Type2: (data.types).length !== 2 ? "none" : data.types[1].type.name
     }
-    
     // pokesprite = data.sprites.front_default; // Pulling sprite from Pokemon API for Pokemon Search
     // console.log(pokesprite);
     // // "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/129.png"

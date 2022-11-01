@@ -38,13 +38,14 @@ function displaySavedSearches() {
     // Displays the saved search results to the previous pokemon searches area
     var count = 1;
     for (let i=(Searches.length-1); i>Searches.length-4; i--) {
+            if (Searches[i] !== undefined) {
             $(`#prevname${count}`).text(Searches[i].Name)
             $(`#previmg${count}`).attr('src',Searches[i].Sprite)
             console.log(i)
             console.log(count)
             count++
+    }
 }
-
 
 }
 displaySavedSearches()
@@ -59,8 +60,8 @@ async function getPokemon(pokemon) {
         .then((response) => response.json())
         .then(function(data) {;
             Searches.push({Name: pokemon, Sprite: data.sprites.front_default})
-            savedSearches(Searches)
 })
+savedSearches(Searches)
 }
 // getPokemon(pokemon)
 // // Wikipedia API
