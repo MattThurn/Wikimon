@@ -24,20 +24,24 @@ getWiki(myParam) // API search function from Wiki API
         
 
 // Displaying information when searching for another pokemon on the landing page
-searchBtn.addEventListener("click",function () {  
+searchBtn.addEventListener("click",async function () {  
     reset()
     var temp = searchBar.value;
     var pokemon = temp.toLowerCase();
     // START 2ND JS FILE
-    console.log('TEST')
-    getPokemon(pokemon) // API search function from Pokemon API
-    getWiki(pokemon)
-    Searches.push({Name: pokemon, Sprite: PokeObj.Sprite})
+    await getPokemon(pokemon) // API search function from Pokemon API
+    await getWiki(pokemon)
+    var tempvar = {Name: pokemon, Sprite: PokeObj.Sprite}
+    console.log(tempvar)
+    Searches.push(tempvar)
     savedSearches(Searches)
 });
 
 
-function savedSearches(pokemon) { // Uses the localStorage to save the last search result
+    
+
+
+async function savedSearches(pokemon) { // Uses the localStorage to save the last search result
     if (pokemon !== null) {
         localStorage.setItem("lastsearch",JSON.stringify(pokemon)); // search results got into the ()
 }
@@ -99,10 +103,10 @@ function reset() {
 }
 
 
-async function getPokemon(pokemon) {
+function getPokemon(pokemon) {
     var BasePoke = `https://pokeapi.co/api/v2/pokemon/${(pokemon)}`;
     // var BasePoke = `https://pokeapi.co/api/v2/pokemon?limit=2000`;
-    await fetch(BasePoke)
+    return fetch(BasePoke)
         .then((response) => response.json())
         .then(function(data) {
     console.log(data);
@@ -122,24 +126,25 @@ async function getPokemon(pokemon) {
     // pokesprite = data.sprites.front_default; // Pulling sprite from Pokemon API for Pokemon Search
     // console.log(pokesprite);
     // // "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/129.png"
+    localStorage.setItem("Poke-Facts",JSON.stringify(PokeObj))
+    console.log(PokeObj)
 
+    return data
     // $('#pokeimg').attr('src',pokesprite);
     // $('#pokeimg').attr('alt',`Sprite of ${pokemon} pulled from Pokemon API`)
     // $('#pokeimg').attr('style','height:240px; weight:240px')
 })
-console.log(PokeObj)
-localStorage.setItem("Poke-Facts",JSON.stringify(PokeObj))
-console.log('order')
+
 }
 // getPokemon(pokemon)
 // Wikipedia API
 
 
 
-async function getWiki(pokemon) {
+function getWiki(pokemon) {
 var BaseWiki = `https://en.wikipedia.org/w/rest.php/v1/search/page?q=pokemon ${pokemon}&limit=5`;
 
-await fetch(BaseWiki)
+return fetch(BaseWiki)
 .then((response) => response.json())
 .then(function(data) {
     console.log(data)
@@ -149,9 +154,9 @@ await fetch(BaseWiki)
             Description: data.pages[i].description
         }
     }
- 
+    localStorage.setItem("Wiki-Facts",JSON.stringify(WikiObj))
+    PokeStuff()
+    return data
 })
-localStorage.setItem("Wiki-Facts",JSON.stringify(WikiObj))
-console.log('order')
-PokeStuff()
+
 }

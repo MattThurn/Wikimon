@@ -50,6 +50,11 @@ function displaySavedSearches() {
 }
 displaySavedSearches()
 
+$('.prevbtn').on('click',function() {
+    pokemon = $ (this).children().children('button').text();
+    getPokemon(pokemon)
+    window.location = `./landing.html?pokemon=${pokemon}`;
+})
 
 
 //fetchin information -- 
