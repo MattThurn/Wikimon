@@ -65,8 +65,8 @@ async function getPokemon(pokemon) {
         .then((response) => response.json())
         .then(function(data) {;
             Searches.push({Name: pokemon, Sprite: data.sprites.front_default})
+            savedSearches(Searches)
 })
-savedSearches(Searches)
 }
 // getPokemon(pokemon)
 // // Wikipedia API
